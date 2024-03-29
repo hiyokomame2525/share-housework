@@ -1,24 +1,40 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## usersテーブル
 
-Things you may want to cover:
+|Column                | Type     | Options                   |
+|----------------------|----------|---------------------------|
+|nickname              | string   | null: false               |
+|email                 | string   | null: false, unique: true |
+|encrypted_password    | string   | null: false               |
+|birthday              | date     | null: false               |
 
-* Ruby version
 
-* System dependencies
+### Association
+- has_one :pair
+- has_many :house_works
 
-* Configuration
 
-* Database creation
+## pairsテーブル
 
-* Database initialization
+|Column                  | Type       | Options                       |
+|------------------------|------------|-------------------------------|
+|user1_id                | references | null: false,foreign_key: true|
+|user2_id                | references | null: false,foreign_key: true| 
 
-* How to run the test suite
+### Association
+- belongs_to :user1, class_name:'User'
+- belongs_to :user2, class_name:'User'
 
-* Services (job queues, cache servers, search engines, etc.)
+## house_worksテーブル
 
-* Deployment instructions
+|Column             | Type       | Options                      |
+|-------------------|------------|------------------------------|
+|work_name          | string     | null: false                  |
+|count              | integer    | null: false                  |
+|pair               | references | null: false,foreign_key: true|
+|user               | references | null: false,foreign_key: true|
 
-* ...
+### Association
+- belongs_to :pair
+- belongs_to :user
