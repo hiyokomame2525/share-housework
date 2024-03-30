@@ -19,8 +19,8 @@
 
 |Column                  | Type       | Options                       |
 |------------------------|------------|-------------------------------|
-|user1_id                | references | null: false,foreign_key: true|
-|user2_id                | references | null: false,foreign_key: true| 
+|user1_id                | references | null: false,foreign_key: true |
+|user2_id                | references | null: false,foreign_key: true | 
 
 ### Association
 - belongs_to :user1, class_name:'User'
