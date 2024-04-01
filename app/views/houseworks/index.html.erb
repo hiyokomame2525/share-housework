@@ -1,10 +1,10 @@
-<h2>トップページ</h2>
+<%= render "shares/header" %>
 
-<% if user_signed_in? %>
-  <%= link_to "ログアウト", destroy_user_session_path,data: { turbo_method: :delete }, class:"logout" %>
-<% else %>
-  <%= link_to "新規登録" , new_user_registration_path, class:"sign-up" %>
-  <%= link_to "ログイン" , new_user_session_path, class:"login" %>
-<% end %>
+<%# link_to "ペアを作る", _path, class: "" #%>
+<%= link_to "家事の記録を書いてみましょう！", new_housework_path, class: "create-daily" %>
+<%= link_to "今日の家事を振り返ってみましょう！", housework_path(current_user), class: "daily-housework" %>
+<%# link_to "", housework_path, class: "week-housework" #%>
 
+
+<%# render "shares/footer"  #%>
 

@@ -1,0 +1,24 @@
+* {
+  box-sizing: border-box;
+}
+
+.title{
+  display: flex;
+  justify-content: space-between;
+}
+
+.top-right-list{
+  list-style: none;
+}
+
+.logout-btn{
+  text-decoration: none;
+}
+
+.login-btn{
+  text-decoration: none;
+}
+
+.sign-up-btn{
+  text-decoration: none;
+}

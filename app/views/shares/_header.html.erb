@@ -1,0 +1,16 @@
+<div class = "title">
+  <div class ="title2">
+    <p class = "">今日も1日お疲れ様です!</p>
+        <%= link_to "トップページへ移動", root_path, class:"top-page-btn" %>
+  </div>
+
+  <ul class = "top-right-list">
+    <% if user_signed_in? %>
+      <li><%= current_user.nickname %>さん</li>
+      <li><%= link_to "ログアウト", destroy_user_session_path,data: { turbo_method: :delete }, class:"logout-btn" %></li>
+    <% else %>
+      <li><%= link_to "新規登録" , new_user_registration_path, class:"sign-up-btn" %></li>
+      <li><%= link_to "ログイン" , new_user_session_path, class:"login-btn" %></li>
+    <% end %>
+  </ul>
+</div>
