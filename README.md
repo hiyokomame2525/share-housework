@@ -30,11 +30,15 @@
 
 |Column             | Type       | Options                      |
 |-------------------|------------|------------------------------|
-|work_name          | string     | null: false                  |
-|count              | integer    | null: false                  |
-|pair               | references | null: false,foreign_key: true|
+|laundry            | boolean    | null: false                  |
+|dishes             | boolean    | null: false                  |
+|cooking            | boolean    | null: false                  |
+|clean_room         | boolean    | null: false                  |
+|bathroom           | boolean    | null: false                  |
+|trash              | boolean    | null: false                  |
+|toilet             | boolean    | null: false                  |
+|date               | date       | null: false                  |
 |user               | references | null: false,foreign_key: true|
 
 ### Association
-- belongs_to :pair
 - belongs_to :user
