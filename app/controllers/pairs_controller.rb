@@ -17,8 +17,8 @@ class PairsController < ApplicationController
   end
 
   def destroy
-    pair = current_user.unfollow()
-    if pair.destroy
+    if current_user == @pair.user_id || @pair.partner_id
+       @pair.destroy
       redirect_to root_path
     else
       flash.now[:alart] = "ペアの解除に失敗しました"
@@ -26,19 +26,12 @@ class PairsController < ApplicationController
     end
   end
 
-
-
   private
     def pair_params
       params.require(:pair).permit(:user_id, :partner_id)
     end
 
-    def unfollow(other_user)
-      pair = self.pairs.find_by(partner_id: other_user.id)
-      pair.destroy if pair
-    end
-
-    def following?(other_user)
-      self.buddy.include?(other_user)
-    end
+    #def following?(other_user)
+     # self.buddy.include?(other_user)
+    #end
 end
