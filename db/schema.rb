@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_31_120327) do
+ActiveRecord::Schema[7.0].define(version: 2024_04_02_002755) do
   create_table "houseworks", charset: "utf8", force: :cascade do |t|
     t.boolean "laundry", null: false
     t.boolean "dishes", null: false
@@ -24,6 +24,16 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_31_120327) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_houseworks_on_user_id"
+  end
+
+  create_table "pairs", charset: "utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "partner_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["partner_id"], name: "index_pairs_on_partner_id"
+    t.index ["user_id", "partner_id"], name: "index_pairs_on_user_id_and_partner_id", unique: true
+    t.index ["user_id"], name: "index_pairs_on_user_id"
   end
 
   create_table "users", charset: "utf8", force: :cascade do |t|
@@ -41,4 +51,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_31_120327) do
   end
 
   add_foreign_key "houseworks", "users"
+  add_foreign_key "pairs", "users"
+  add_foreign_key "pairs", "users", column: "partner_id"
 end

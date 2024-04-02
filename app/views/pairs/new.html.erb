@@ -1,0 +1,26 @@
+<%= render "shares/header" %>
+
+<div class = "create-pair-whole">
+  <div class = "id-explain-space">
+    あなたのIDは、<%= current_user.id %> です
+  </div>
+  <div class = "pair-explain-space">
+    誰とペアを組みますか？
+  </div>
+
+  <div class = "pair-form-whole">
+    <%= form_with model:@pair, url: pairs_path, class:"pair-form", local:true do |f| %>
+    <%= render 'shares/error_messages', model: f.object %>
+      <div class = "partner-id-space">
+        <label>あなたのID入力欄</label>
+          <%= f.text_field :user_id, class:"pair-content",id:"user-number-text" ,placeholder: "あなたのIDを入力してください" %></br>
+        <label>相手のID入力欄</label>
+          <%= f.text_field :partner_id, class:"pair-content",id:"partner-number-text" ,placeholder: "相手のIDを入力してください" %>
+      <div class = "submit-pair">
+        <%= f.submit "ペアを作る", class:"pair-create-btn" %> 
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<%# render "shares/footer"  #%>

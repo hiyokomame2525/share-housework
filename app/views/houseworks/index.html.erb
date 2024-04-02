@@ -1,10 +1,11 @@
 <%= render "shares/header" %>
 
-<%# link_to "ペアを作る", _path, class: "" #%>
-<%= link_to "家事の記録を書いてみましょう！", new_housework_path, class: "create-daily" %>
-<%= link_to "今日の家事を振り返ってみましょう！", housework_path(current_user), class: "daily-housework" %>
-<%# link_to "", housework_path, class: "week-housework" #%>
-
+<%= link_to "ペアを作る", new_pair_path %>
+<%= link_to "家事の記録をつけてみましょう！", new_housework_path, class: "create-daily" %>
+<%# @housework.each do |housework| #%>
+  <%# link_to "今日の家事を振り返ってみましょう！", housework_path(housework), class: "daily-housework" #%>
+  <%# link_to "", housework_path, class: "week-housework" #%>
+<%# end #%>
 
 <%# render "shares/footer"  #%>
 
