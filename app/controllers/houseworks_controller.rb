@@ -4,22 +4,23 @@ class HouseworksController < ApplicationController
   def index
   end
 
-  #def new
-  #end
+  def new
+  end
 
-  #def create
-  #end
+  def create
+  end
 
-  #def show
-  #end
+  def show
+    @housework = Housework.all
+  end
 
-  #def edit
-  #end
+  def edit
+  end
 
-  #def update
-  #end
+  def update
+  end
 
-  #def destroy
-  #end
+  def destroy
+  end
 
 end

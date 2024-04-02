@@ -1,0 +1,35 @@
+.create-pair-whole{
+  height: 500px;
+  width: 500px;
+  margin: 150px auto ;
+}
+
+.id-explain-space{
+  height: 80px;
+  width:500px;
+}
+
+.pair-explain-space{
+  height: 80px;
+  width:500px;
+}
+
+.pair-form-whole{
+  height: 300px;
+  width:500px;
+}
+
+.partner-id-space{
+  height: 340px;
+  width:500px;
+}
+
+.pair-content{
+  height: 30px;
+  width:300px;
+}
+
+.pair-create-btn{
+  height: 30px;
+  width:100px;
+}

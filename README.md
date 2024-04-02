@@ -17,14 +17,14 @@
 
 ## pairsテーブル
 
-|Column                  | Type       | Options                       |
-|------------------------|------------|-------------------------------|
-|user1_id                | references | null: false,foreign_key: true |
-|user2_id                | references | null: false,foreign_key: true | 
+|Column     | Type       | Options                                    |
+|-----------|------------|--------------------------------------------|
+|user       | references | null: false,foreign_key: true              |
+|partner    | references | null: false,foreign_key: {to_table: :users}| 
 
 ### Association
-- belongs_to :user1, class_name:'User'
-- belongs_to :user2, class_name:'User'
+- belongs_to :user
+- belongs_to :partner, class_name:'User'
 
 ## house_worksテーブル
 
