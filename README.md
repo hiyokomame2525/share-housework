@@ -37,7 +37,7 @@
 |bathroom           | boolean    | null: false                  |
 |trash              | boolean    | null: false                  |
 |toilet             | boolean    | null: false                  |
-|date               | date       | null: false                  |
+|created_at(記録日時)| created_at | null: false                  |
 |user               | references | null: false,foreign_key: true|
 
 ### Association
