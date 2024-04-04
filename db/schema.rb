@@ -12,14 +12,13 @@
 
 ActiveRecord::Schema[7.0].define(version: 2024_04_02_002755) do
   create_table "houseworks", charset: "utf8", force: :cascade do |t|
-    t.boolean "laundry", null: false
-    t.boolean "dishes", null: false
-    t.boolean "cooking", null: false
-    t.boolean "clean_room", null: false
-    t.boolean "bathroom", null: false
-    t.boolean "trash", null: false
-    t.boolean "toilet", null: false
-    t.date "date", null: false
+    t.boolean "laundry", default: false, null: false
+    t.boolean "dishes", default: false, null: false
+    t.boolean "cooking", default: false, null: false
+    t.boolean "clean_room", default: false, null: false
+    t.boolean "bathroom", default: false, null: false
+    t.boolean "trash", default: false, null: false
+    t.boolean "toilet", default: false, null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
