@@ -8,7 +8,7 @@ class CreateHouseworks < ActiveRecord::Migration[7.0]
       t.boolean :bathroom, null: false , default: false
       t.boolean :trash, null: false , default: false
       t.boolean :toilet, null: false, default: false
-      t.references :user, null: false, foreign_key: true
+      t.references :pair, null: false, foreign_key: true
       t.timestamps
     end
   end
