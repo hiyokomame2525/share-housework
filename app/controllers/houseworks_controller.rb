@@ -1,5 +1,4 @@
 class HouseworksController < ApplicationController
- # before_action :pairnil, only: [:new]
   before_action :authenticate_user!,except: [:index]
 
   def index
@@ -47,12 +46,21 @@ class HouseworksController < ApplicationController
   end
 
   def show
-    @pairs = Pair.find(params[:id])
-    #@housework = Housework.find(params[:id])
- #   if current_user.id == @housework.user_id || current_user.id == @pair.user_id || current_user.id == @pair.partner_id
-  #    @housework_partner = Housework.find_by(user_id: current_user.id)
-   #   @housework_buddy = Housework.find_by(user_id: current_user.id)
-   # end
+    @pair_1 = Pair.find_by(user_id: current_user.id )
+    @pair_2 = Pair.find_by(partner_id:current_user.id)
+    if @pair_1
+      @pair = @pair_1
+    elsif @pair_2
+      @pair = @pair_2
+    end
+    
+    @partner= User.find_by(id: @pair.partner_id)
+    @buddy = User.find_by(id: @pair.user_id)
+
+    @houseworks = Housework.where(pair_id: @pair.id).where(created_at: 1.week.ago..Time.now)
+    @housework = Housework.find(params[:id])
+
+    
   end
 
   def edit
