@@ -12,7 +12,6 @@
 
 ### Association
 - has_one :pair
-- has_many :house_works
 
 
 ## pairsテーブル
@@ -25,6 +24,7 @@
 ### Association
 - belongs_to :user
 - belongs_to :partner, class_name:'User'
+- has_many :house_works
 
 ## house_worksテーブル
 
@@ -37,8 +37,8 @@
 |bathroom           | boolean    | null: false                  |
 |trash              | boolean    | null: false                  |
 |toilet             | boolean    | null: false                  |
-|created_at(記録日時)| created_at | null: false                  |
-|user               | references | null: false,foreign_key: true|
+|created_at(記録日時)| created_at | null: false                 |
+|pair               | references | null: false,foreign_key: true|
 
 ### Association
-- belongs_to :user
+- belongs_to :pair

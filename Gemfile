@@ -73,3 +73,8 @@ end
 
 gem "devise"
 gem "pry-rails"
+gem "chartkick"
+
+group :production do
+  gem 'pg'
+end

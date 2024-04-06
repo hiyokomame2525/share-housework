@@ -1,13 +1,20 @@
 <%= render "shares/header" %>
 
+<ul class = "url-lists" >
+<% if user_signed_in? %>
+  <% if @pair_1.present? || @pair_2.present? %>
+    <li class = "url-list">
+      <%= link_to "家事の記録をつけてみましょう！", new_housework_path, class: "create-daily" %>
+        <% @houseworks.each do |housework| %>
+          <% if housework.pair.id == (@pair_1.id || @pair_2.id) %>
+            <%= link_to "今日の家事を振り返ってみましょう！", housework_path(housework.id), class: "daily-housework" %>
+          <% end %>
+        <% end %>
+    <% else %>
+    <%= link_to "ペアを作る", new_pair_path %>
+  <% end %>
+<% end %>
 
-  <%= link_to "ペアを作る", new_pair_path %>
-
-  <%= link_to "家事の記録をつけてみましょう！", new_housework_path, class: "create-daily" %>
-  <%# @housework.each do |housework| #%>
-  <%# link_to "今日の家事を振り返ってみましょう！", housework_path(housework), class: "daily-housework" #%>
-  <%# link_to "", housework_path, class: "week-housework" #%>
-<%# end #%>
-
+</ul>
 <%# render "shares/footer"  #%>
 
