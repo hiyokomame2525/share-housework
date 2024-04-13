@@ -7,7 +7,7 @@
       <%= link_to "家事の記録をつけてみましょう！", new_housework_path, class: "create-daily" %>
         <% @houseworks.each do |housework| %>
           <% if housework.pair.id == (@pair_1.id || @pair_2.id) %>
-            <%= link_to "今日の家事を振り返ってみましょう！", housework_path(housework.id), class: "daily-housework" %>
+            <%= link_to "今週の家事を振り返ってみましょう！", housework_path(housework.id), class: "daily-housework" %>
           <% end %>
         <% end %>
     <% else %>

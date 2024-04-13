@@ -1,119 +1,136 @@
 <%= render "shares/header" %>
+<%= include_gon %>
 
 <div>
-  <canvas id="houseworkChart" width="700" height="250"></canvas>
+  <canvas id="houseworkChart"></canvas>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <script>
-  const data = {
-      labels: ['洗濯', '食器洗い', '調理', '部屋の片づけ', 'お風呂掃除', 'ゴミを集めて捨てる', 'トイレ掃除'],
+  const ctx = document.getElementById('houseworkChart');
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: [
+        '洗濯(${buddyName})',
+        '洗濯(${partnerName})',
+        '食器洗い(${buddyName})',
+        '食器洗い(${partnerName})',
+        '調理(${buddyName}),
+        '調理(${partnerName}),
+        '部屋の片づけ(${buddyName})',
+        '部屋の片づけ(${partnerName})',
+        'お風呂掃除(${buddyName})',
+        'お風呂掃除(${partnerName})',
+        'ゴミを集めて捨てる(${buddyName})',
+        'ゴミを集めて捨てる(${partnerName})',
+        'トイレ掃除(${buddyName})'
+        'トイレ掃除(${partnerName})'
+      ],
       datasets: [{
-        axis: 'y'
-        label: <%= @buddy.nickname %>,
-        backgroundColor: 'rgba(255, 165, 0)',
-        borderColor: 'rgba(255, 165, 0)',
-        data: [3, 0, 3, 5, 2, 3, 1],
-        fill: false,
-        borderWidth: 1},
-      {
-        label: <%= @partner.nickname %>,
-        backgroundColor: 'rgba(0, 255, 127)',
-        borderColor: 'rgba(0, 255, 127)',
-        data: [0, 0, 3, 5, 2, 3, 1],
-        fill: false,
+        label: '# of Votes',
+        data: [
+          weekLaundryBuddy,
+          weekLaundryPartner,
+          weekDishesBuddy,
+          weekDishesPartner,
+          weekCookingBuddy, 
+          weekCookingPartner,
+          weekCleanRoomBuddy,
+          weekCleanRoomPartner,
+          weekBathroomBuddy,
+          weekBathroomPartner,
+          weekTrashBuddy,
+          weekTrashPartner,
+          weekToiletBuddy, 
+          weekToiletPartner],
         borderWidth: 1
-      }]};
-
-      const config = {
-        type: 'bar',
-        data,
-        options: {
-          indexAxis: 'y'
-         }
-        };
-
-      var myChart = new Chart(
-        document.getElementById('houseworkChart'),
-        config: config,
-      );
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
 </script>
 
 
 
-
 <div class = "whole">
-  <div class = "explain-space">
-    <div class = "created_at"><%= @housework.created_at.strftime('%Y/%m/%d') %></div>
-    <div class = "users-color">
-      <div class = "users-area">
-        <div class = "user-name"><%= @buddy.nickname %></div>
-        <div class = "user-color"></div>
-      <div class = "users-area"></div>
-        <div class = "partner-name"><%= @partner.nickname %></div>
-        <div class = "partner-color"></div>
-      </div>
-      </div>
+<div class = "explain-space">
+  <div class = "created_at"><%= @housework.created_at.strftime('%Y/%m/%d') %></div>
+  <div class = "users-color">
+    <div class = "users-area">
+      <div class = "user-name"><%= @buddy.nickname %></div>
+      <div class = "user-color"></div>
+    <div class = "users-area"></div>
+      <div class = "partner-name"><%= @partner.nickname %></div>
+      <div class = "partner-color"></div>
     </div>
+    </div>
+  </div>
+
+<div class ="housework-spaces">
+  <ul>
+    <li class = "housework-space">
+      <p class = "housework-list">洗濯</p>
+      <div class = "bar-platform">
+      <input type = "hidden" id ="laundry" value="<%= @housework.laundry %>">
+        <div class = "laundry-bar-user"></div>
+        <div class = "laundry-bar-partner"></div>
+      </div>
+    </li>
   
-  <div class ="housework-spaces">
-    <ul>
-      <li class = "housework-space">
-        <p class = "housework-list">洗濯</p>
-        <div class = "bar-platform">
-        <input type = "hidden" id ="laundry" value="<%= @housework.laundry %>">
-          <div class = "laundry-bar-user"></div>
-          <div class = "laundry-bar-partner"></div>
-        </div>
-      </li>
-    
-      <li class = "housework-space">
-        <p class = "housework-list">食器洗い</p>
-        <div class = "bar-platform">
-          <div class = "dishes-bar-user"></div>
-          <div class = "dishes-bar-partner"></div>
-        </div>
-      </li>
+    <li class = "housework-space">
+      <p class = "housework-list">食器洗い</p>
+      <div class = "bar-platform">
+        <div class = "dishes-bar-user"></div>
+        <div class = "dishes-bar-partner"></div>
+      </div>
+    </li>
 
-      <li class = "housework-space">
-        <p class = "housework-list">調理</p>
-        <div class = "bar-platform">
-          <div class = "cooking-bar-uer"></div>
-          <div class = "cooking-bar-partner"></div>
-        </div>
-      </li>
+    <li class = "housework-space">
+      <p class = "housework-list">調理</p>
+      <div class = "bar-platform">
+        <div class = "cooking-bar-uer"></div>
+        <div class = "cooking-bar-partner"></div>
+      </div>
+    </li>
 
-      <li class = "housework-space">
-        <p class = "housework-list">部屋の片づけ</p>
-        <div class = "bar-platform">
-          <div class = "clean_room-bar-user"></div>
-          <div class = "clean_room-bar-partner"></div>
-        </div>
-      </li>
-      
-      <li class = "housework-space">
-        <p class = "housework-list">お風呂掃除</p>
-        <div class = "bar-platform">
-          <div class = "bathroom-bar-user"></div>
-          <div class = "bathroom-bar-partner"></div>
-        </div>
-      </li>
-      
-      <li class = "housework-space">
-        <p class = "housework-list">ゴミを集めて捨てる</p>
-        <div class = "bar-platform">
-          <div class = "trash-bar-user"></div>
-          <div class = "trash-bar-partner"></div>
-        </div>
-      </li>
+    <li class = "housework-space">
+      <p class = "housework-list">部屋の片づけ</p>
+      <div class = "bar-platform">
+        <div class = "clean_room-bar-user"></div>
+        <div class = "clean_room-bar-partner"></div>
+      </div>
+    </li>
     
-      <li class = "housework-space">
-        <p class = "housework-list">トイレ掃除</p>
-        <div class = "bar-platform">
-          <div class = "toilet-bar-user"></div>
-          <div class = "toilet-bar-partner"></div>
-        </div>
-      </li>
-    </ul>
-    <%= link_to "記録を修正する",edit_housework_path ,class:"housework-edit-btn"%>
-  </div>
-  </div>
-</div>
+    <li class = "housework-space">
+      <p class = "housework-list">お風呂掃除</p>
+      <div class = "bar-platform">
+        <div class = "bathroom-bar-user"></div>
+        <div class = "bathroom-bar-partner"></div>
+      </div>
+    </li>
+    
+    <li class = "housework-space">
+      <p class = "housework-list">ゴミを集めて捨てる</p>
+      <div class = "bar-platform">
+        <div class = "trash-bar-user"></div>
+        <div class = "trash-bar-partner"></div>
+      </div>
+    </li>
+  
+    <li class = "housework-space">
+      <p class = "housework-list">トイレ掃除</p>
+      <div class = "bar-platform">
+        <div class = "toilet-bar-user"></div>
+        <div class = "toilet-bar-partner"></div>
+      </div>
+    </li>
+  </ul>
