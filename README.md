@@ -60,10 +60,10 @@ https://share-housework.onrender.com
 
 
 # データベース設計
-
+![share-houseworkのER図](https://github.com/hiyokomame2525/share-housework/assets/153285246/e718c1ed-fe52-45eb-996a-185d7fdcaaa1)
 
 # 画面遷移図
-
+![share-houseworkの画面遷移図](https://github.com/hiyokomame2525/share-housework/assets/153285246/4cacb938-b23f-46ac-a6f7-d68f83863ea6)
 
 # 開発環境
 ・html/css  
