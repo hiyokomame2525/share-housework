@@ -45,9 +45,8 @@ https://share-housework.onrender.com
 
 
 # 実装予定の機能
-現在、詳細ページのグラフを作成中。  
-今後は、下記実装を予定。  
-・当日の家事記録を編集しなおす編集機能。
+現在、当日の家事記録を編集しなおす編集機能を作成中。  
+今後は、下記実装を予定。 
 
 ・当日の家事記録を削除する削除機能。
 
@@ -70,12 +69,14 @@ https://share-housework.onrender.com
 ・html/css
 ・Ruby/JavaScript 
 ・render：PostgreSQL
-・テスト： 
 ・テキストエディタ：VScode  
 ・タスク管理：github
 
 # ローカルでの動作方法
-
+以下のコマンドを順に実行
+% git clone https://github.com/hiyokomame2525/share-housework
+% cd share-housework
+% bundle install
 
 # 工夫したポイント
 
