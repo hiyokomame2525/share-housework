@@ -47,7 +47,6 @@ class HouseworksController < ApplicationController
   
     @housework = Housework.new(housework_params)
     if @housework.save
-      render json;{housework:@housework}
       redirect_to root_path
     else
       render :new, status: :unprocessable_entity
@@ -71,6 +70,25 @@ class HouseworksController < ApplicationController
     
     gon.buddyName = @buddy.nickname
     gon.partnerName = @partner.nickname
+  
+    from  = 7.day.ago
+    to    = Time.now
+    week_counts ={
+      laundry_buddy: Housework.where(created_at: from..to).where(laundry: true).count,
+      laundry_partner: Housework.where(created_at: from..to).where(laundry: false).count,
+      dishes_buddy: Housework.where(created_at: from..to).where(dishes: true).count,
+      dishes_partner: Housework.where(created_at: from..to).where( dishes: false).count,
+      cooking_buddy: Housework.where(created_at: from..to).where( cooking: true).count,
+      cooking_partner: Housework.where(created_at: from..to).where( cooking: false).count,
+      clean_room_buddy: Housework.where(created_at: from..to).where( clean_room: true).count,
+      clean_room_partner: Housework.where(created_at: from..to).where( clean_room: false).count,
+      bathroom_buddy: Housework.where(created_at: from..to).where( bathroom: true).count,
+      bathroom_partner: Housework.where(created_at: from..to).where( bathroom: false).count,
+      trash_buddy: Housework.where(created_at: from..to).where( trash: true).count,
+      trash_partner: Housework.where(created_at: from..to).where( trash: false).count,
+      toilet_buddy: Housework.where(created_at: from..to).where( toilet: true).count,
+      toilet_partner: Housework.where(created_at: from..to).where( toilet: false).count
+    }
 
     gon.weekLaundryBuddy = week_counts[:laundry_buddy]
     gon.weekLaundryPartner = week_counts[:laundry_partner]

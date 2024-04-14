@@ -1,8 +1,13 @@
 <%= render "shares/header" %>
 <%= include_gon %>
 
+<p class = "explain-space">
+実施日数(1週間あたり)
+</p>
+
+
 <div>
-  <canvas id="houseworkChart"></canvas>
+  <canvas id="houseworkChart" width="800" height="300"></canvas>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -13,43 +18,57 @@
   new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: [
-        '洗濯(${buddyName})',
-        '洗濯(${partnerName})',
-        '食器洗い(${buddyName})',
-        '食器洗い(${partnerName})',
-        '調理(${buddyName}),
-        '調理(${partnerName}),
-        '部屋の片づけ(${buddyName})',
-        '部屋の片づけ(${partnerName})',
-        'お風呂掃除(${buddyName})',
-        'お風呂掃除(${partnerName})',
-        'ゴミを集めて捨てる(${buddyName})',
-        'ゴミを集めて捨てる(${partnerName})',
-        'トイレ掃除(${buddyName})'
-        'トイレ掃除(${partnerName})'
+      labels:[
+        `洗濯(${gon.buddyName})`,
+        `洗濯(${gon.partnerName})`,
+        `食器洗い(${gon.buddyName})`,
+        `食器洗い(${gon.partnerName})`,
+        `調理(${gon.buddyName})`,
+        `調理(${gon.partnerName})`,
+        `部屋の片づけ(${gon.buddyName})`,
+        `部屋の片づけ(${gon.partnerName})`,
+        `お風呂掃除(${gon.buddyName})`,
+        `お風呂掃除(${gon.partnerName})`,
+        `ゴミを集めて捨てる(${gon.buddyName})`,
+        `ゴミを集めて捨てる(${gon.partnerName})`,
+        `トイレ掃除(${gon.buddyName})`,
+        `トイレ掃除(${gon.partnerName})`
       ],
       datasets: [{
-        label: '# of Votes',
+        label: '実施日数(1週間あたり)',
         data: [
-          weekLaundryBuddy,
-          weekLaundryPartner,
-          weekDishesBuddy,
-          weekDishesPartner,
-          weekCookingBuddy, 
-          weekCookingPartner,
-          weekCleanRoomBuddy,
-          weekCleanRoomPartner,
-          weekBathroomBuddy,
-          weekBathroomPartner,
-          weekTrashBuddy,
-          weekTrashPartner,
-          weekToiletBuddy, 
-          weekToiletPartner],
+          gon.weekLaundryBuddy,
+          gon.weekLaundryPartner,
+          gon.weekDishesBuddy,
+          gon.weekDishesPartner,
+          gon.weekCookingBuddy, 
+          gon.weekCookingPartner,
+          gon.weekCleanRoomBuddy,
+          gon.weekCleanRoomPartner,
+          gon.weekBathroomBuddy,
+          gon.weekBathroomPartner,
+          gon.weekTrashBuddy,
+          gon.weekTrashPartner,
+          gon.weekToiletBuddy,
+          gon.weekToiletPartner
+        ],
+        backgroundColor: [
+          'rgba(255, 200, 12, 0.5)',
+          'rgba(19, 200, 15, 0.4)'
+        ],
+        borderColor: [
+          'rgb(255, 159, 64)',
+          'rgb(75, 192, 192)'
+        ],
         borderWidth: 1
       }]
     },
     options: {
+      plugins: {
+      legend: {
+        display: false
+      }
+    },
       scales: {
         y: {
           beginAtZero: true
@@ -58,79 +77,3 @@
     }
   });
 </script>
-
-
-
-<div class = "whole">
-<div class = "explain-space">
-  <div class = "created_at"><%= @housework.created_at.strftime('%Y/%m/%d') %></div>
-  <div class = "users-color">
-    <div class = "users-area">
-      <div class = "user-name"><%= @buddy.nickname %></div>
-      <div class = "user-color"></div>
-    <div class = "users-area"></div>
-      <div class = "partner-name"><%= @partner.nickname %></div>
-      <div class = "partner-color"></div>
-    </div>
-    </div>
-  </div>
-
-<div class ="housework-spaces">
-  <ul>
-    <li class = "housework-space">
-      <p class = "housework-list">洗濯</p>
-      <div class = "bar-platform">
-      <input type = "hidden" id ="laundry" value="<%= @housework.laundry %>">
-        <div class = "laundry-bar-user"></div>
-        <div class = "laundry-bar-partner"></div>
-      </div>
-    </li>
-  
-    <li class = "housework-space">
-      <p class = "housework-list">食器洗い</p>
-      <div class = "bar-platform">
-        <div class = "dishes-bar-user"></div>
-        <div class = "dishes-bar-partner"></div>
-      </div>
-    </li>
-
-    <li class = "housework-space">
-      <p class = "housework-list">調理</p>
-      <div class = "bar-platform">
-        <div class = "cooking-bar-uer"></div>
-        <div class = "cooking-bar-partner"></div>
-      </div>
-    </li>
-
-    <li class = "housework-space">
-      <p class = "housework-list">部屋の片づけ</p>
-      <div class = "bar-platform">
-        <div class = "clean_room-bar-user"></div>
-        <div class = "clean_room-bar-partner"></div>
-      </div>
-    </li>
-    
-    <li class = "housework-space">
-      <p class = "housework-list">お風呂掃除</p>
-      <div class = "bar-platform">
-        <div class = "bathroom-bar-user"></div>
-        <div class = "bathroom-bar-partner"></div>
-      </div>
-    </li>
-    
-    <li class = "housework-space">
-      <p class = "housework-list">ゴミを集めて捨てる</p>
-      <div class = "bar-platform">
-        <div class = "trash-bar-user"></div>
-        <div class = "trash-bar-partner"></div>
-      </div>
-    </li>
-  
-    <li class = "housework-space">
-      <p class = "housework-list">トイレ掃除</p>
-      <div class = "bar-platform">
-        <div class = "toilet-bar-user"></div>
-        <div class = "toilet-bar-partner"></div>
-      </div>
-    </li>
-  </ul>
