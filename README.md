@@ -8,7 +8,7 @@ share-housework
 https://share-housework.onrender.com
 
 # テスト用アカウント
-## ユーザー１
+### ユーザー１
 
 ・ニックネーム：山田太郎
 
@@ -18,7 +18,7 @@ https://share-housework.onrender.com
 
 ・誕生日：2000年,1月,1日
 
-## ユーザー２
+### ユーザー２
 
 ・ニックネーム：山田花子
 
@@ -31,7 +31,7 @@ https://share-housework.onrender.com
 # 利用方法
 ## ペア作成
 1.トップページのヘッダーからユーザー新規登録をする。  
-  ペア作成のために2人分実施する。
+  ペア作成のために2人分実施する。  
 2.トップページのヘッダーに新しく追加された「ペアを作る」をクリック。IDを2人分入力してペア作成。
 ## 家事実施を投稿
 トップページの「家事の記録をつける」ボタンから、ペアのどちらがどの家事をしたのかチェックボックスを選択してデータを保存する。
@@ -60,33 +60,33 @@ https://share-housework.onrender.com
 
 
 # データベース設計
-"C:\Users\fuwaf\Downloads\share-houseworkのER図.png"
+![share-houseworkのER図](https://github.com/hiyokomame2525/share-housework/assets/153285246/e718c1ed-fe52-45eb-996a-185d7fdcaaa1)
 
 # 画面遷移図
-"C:\Users\fuwaf\Downloads\share-houseworkの画面遷移図.png"
+![share-houseworkの画面遷移図](https://github.com/hiyokomame2525/share-housework/assets/153285246/4cacb938-b23f-46ac-a6f7-d68f83863ea6)
 
 # 開発環境
-・html/css
-・Ruby/JavaScript 
-・render：PostgreSQL
+・html/css  
+・Ruby/JavaScript  
+・render：PostgreSQL  
 ・テキストエディタ：VScode  
 ・タスク管理：github
 
 # ローカルでの動作方法
-以下のコマンドを順に実行
-% git clone https://github.com/hiyokomame2525/share-housework
-% cd share-housework
+以下のコマンドを順に実行  
+% git clone https://github.com/hiyokomame2525/share-housework  
+% cd share-housework  
 % bundle install
 
 # 工夫したポイント
-・カリキュラム内ではあまりJavaScriptの内容は触れていなかったが、グラフ作成でchart.jsを使って家事の実施日数を可視化した。
-・見た目よりも機能を優先的に作成した。
-・本職の仕事をしながらの作成なため、実装に割ける時間は極力実装に使用し作成した。
+・カリキュラム内ではあまりJavaScriptの内容は触れていなかったが、グラフ作成でchart.jsを使って家事の実施日数を可視化した。  
+・見た目よりも機能を優先的に作成した。  
+・本職の仕事をしながらの作成なため、実装に割ける時間は極力実装に使用し作成した。  
 
 # 改善点
-・棒グラフを表示できるようになってからログアウトができなくなってしまったので、マージする前のコードを張り付けて原因究明する。
-・ペアが1組のみ作成できるようにバリデーションをつける。
-・上記がしたら適宜cssを使用して装飾をする。
+・棒グラフを表示できるようになってからログアウトができなくなってしまったので、マージする前のコードを張り付けて原因究明する。  
+・ペアが1組のみ作成できるようにバリデーションをつける。  
+・上記がしたら適宜cssを使用して装飾をする。  
 
 # 制作時間
 約60時間
