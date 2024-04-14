@@ -1,4 +1,5 @@
 <%= render "shares/header" %>
+<div class = "whole">
 <h2>家事の記録を残しましょう</h2>
 
 <%= form_with(model:@housework, url: houseworks_path, local: true) do |f| %>
@@ -49,3 +50,4 @@
     <%= f.submit "頑張りを保存する！", class:"housewourk-submit-btn" %>
   </div>
 <% end %>
+</div>

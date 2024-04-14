@@ -1,19 +1,22 @@
 <%= render "shares/header" %>
 
-<ul class = "url-lists" >
+<div class = "record-whole">
 <% if user_signed_in? %>
   <% if @pair_1.present? || @pair_2.present? %>
-    <li class = "url-list">
-      <%= link_to "家事の記録をつけてみましょう！", new_housework_path, class: "create-daily" %>
-        <% @houseworks.each do |housework| %>
-          <% if housework.pair.id == (@pair_1.id || @pair_2.id) %>
-            <%= link_to "今週の家事を振り返ってみましょう！", housework_path(housework.id), class: "daily-housework" %>
-          <% end %>
+    <div class = "housework-record">
+      <%= link_to "家事の記録をつけてみましょう！", new_housework_path, class: "record" %>
+    </div>
+    <div class = "housework-record-week">
+      <% @houseworks.each do |housework| %>
+        <% if housework.pair.id == (@pair_1.id || @pair_2.id) %>
+          <%= link_to "今週の家事を振り返ってみましょう！", housework_path(housework.id), class: "record-week" %>
         <% end %>
-    <% else %>
-    <%= link_to "ペアを作る", new_pair_path %>
+      <% end %>
+    </div>
+  <% else %>
+    <div class = "create-pair">
+      <%= link_to "ペアを作る", new_pair_path %>
+    </div>
   <% end %>
 <% end %>
-
-</ul>
-
+</div>

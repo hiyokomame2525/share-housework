@@ -3,22 +3,41 @@
 }
 
 .title{
+  height: 100px;
   display: flex;
   justify-content: space-between;
+  padding: 30px;
+  background-color: forestgreen;
+}
+
+.title3{
+  color: aliceblue;
 }
 
 .top-right-list{
   list-style: none;
 }
 
+.top-page-btn{
+  text-decoration: none;
+  color: aliceblue;
+}
+
 .logout-btn{
   text-decoration: none;
+  color: aliceblue;
 }
 
 .login-btn{
   text-decoration: none;
+  color: aliceblue;
 }
 
 .sign-up-btn{
   text-decoration: none;
+  color: aliceblue;
+}
+
+li{
+  color: aliceblue;
 }
