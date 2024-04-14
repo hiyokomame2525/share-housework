@@ -1,3 +1,10 @@
+.record-whole{
+  height: 700px;
+  width: 100vw;
+  background-color: bisque;
+  padding-top: 80px;
+}
 .explain-space{
   height: 10px;
+  padding-bottom: 20px;
 }

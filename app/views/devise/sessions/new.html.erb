@@ -1,4 +1,5 @@
 <%= render "shares/header" %>
+<div class = "whole">
 <h2>Log in</h2>
 
 <%= form_with model:@user, url:  user_session_path, class: '' ,local: true do |f| %>
@@ -18,5 +19,4 @@
     <%= f.submit "ログイン", class:"login-user-btn" %>
   </div>
 <% end %>
-
-<%# いい感じの英語末尾  #%>
+</div>

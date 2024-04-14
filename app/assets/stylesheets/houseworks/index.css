@@ -1,0 +1,50 @@
+.record-whole{
+  height: 700px;
+  width: 100vw;
+  background-color: bisque;
+  padding-top: 100px;
+}
+
+.housework-record{
+  width: 300px;
+  height: 100px;
+  background-color: aquamarine;
+  border-radius: 10px;
+  margin-bottom:100px;
+  margin-left: 600px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.housework-record-week{
+  width: 300px;
+  height: 100px;
+  margin-left: 600px;
+  background-color: aquamarine;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.create-pair{
+  width: 300px;
+  height: 100px;
+  background-color: hotpink;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.record{
+  text-decoration: none;
+  color:darkgreen;
+  line-height: 100px;
+}
+
+.record-week{
+  text-decoration: none;
+  color:darkgreen;
+  line-height: 100px;
+}
