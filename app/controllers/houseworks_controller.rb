@@ -2,15 +2,22 @@ class HouseworksController < ApplicationController
   before_action :authenticate_user!,except: [:index]
 
   def index
-    if current_user
+    if user_signed_in?
       @pair_1 = Pair.find_by(user_id: current_user.id )
       @pair_2 = Pair.find_by(partner_id:current_user.id)
-      if @pair_1 = Pair.find_by(user_id: current_user.id ) || @pair_2 = Pair.find_by(partner_id:current_user.id)
-        @partner = User.find_by(id: @pair_1.user_id)
-        @buddy = User.find_by(id: @pair_1.partner_id)
+      if @pair_1
+        @houseworks = Housework.where(pair_id: @pair_1.id)
+        @houseworks.each do |housework|
+          @housework = housework.id
+        end
+      elsif @pair_2
+        @houseworks = Housework.where(pair_id: @pair_2.id)
+        @houseworks.each do |housework|
+          @housework = housework.id
+        end
       end
     end
-    @houseworks = Housework.all
+    
   end
 
   def new
