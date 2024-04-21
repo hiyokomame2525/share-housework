@@ -31,7 +31,9 @@
 .create-pair{
   width: 300px;
   height: 100px;
-  background-color: hotpink;
+  margin-left: 600px;
+  background-color:darkorange;
+  border-radius: 10px;
   display: flex;
   justify-content: center;
   text-align: center;
@@ -46,5 +48,12 @@
 .record-week{
   text-decoration: none;
   color:darkgreen;
+  line-height: 100px;
+}
+
+.pair-create{
+  text-decoration: none;
+  color:indigo;
+  font-size: 30px;
   line-height: 100px;
 }

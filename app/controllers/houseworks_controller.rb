@@ -2,15 +2,21 @@ class HouseworksController < ApplicationController
   before_action :authenticate_user!,except: [:index]
 
   def index
-    if current_user
+    @houseworks = Housework.all
+    if user_signed_in?
       @pair_1 = Pair.find_by(user_id: current_user.id )
       @pair_2 = Pair.find_by(partner_id:current_user.id)
-      if @pair_1 = Pair.find_by(user_id: current_user.id ) || @pair_2 = Pair.find_by(partner_id:current_user.id)
-        @partner = User.find_by(id: @pair_1.user_id)
-        @buddy = User.find_by(id: @pair_1.partner_id)
+      if @pair_1.present? 
+        if @pair_1.user_id || @pair_1.partner_id == current_user.id
+          @house_work = @houseworks.where(pair_id: @pair_1.id).order("created_at DESC").last
+        end
+      elsif  @pair_2.present?
+        if @pair_2.user_id || @pair_2.partner_id == current_user.id
+          @house_work = @houseworks.where(pair_id: @pair_2.id).order("created_at DESC").last
+        end
       end
     end
-    @houseworks = Housework.all
+    
   end
 
   def new
@@ -74,20 +80,20 @@ class HouseworksController < ApplicationController
     from  = 7.day.ago
     to    = Time.now
     week_counts ={
-      laundry_buddy: Housework.where(created_at: from..to).where(laundry: true).count,
-      laundry_partner: Housework.where(created_at: from..to).where(laundry: false).count,
-      dishes_buddy: Housework.where(created_at: from..to).where(dishes: true).count,
-      dishes_partner: Housework.where(created_at: from..to).where( dishes: false).count,
-      cooking_buddy: Housework.where(created_at: from..to).where( cooking: true).count,
-      cooking_partner: Housework.where(created_at: from..to).where( cooking: false).count,
-      clean_room_buddy: Housework.where(created_at: from..to).where( clean_room: true).count,
-      clean_room_partner: Housework.where(created_at: from..to).where( clean_room: false).count,
-      bathroom_buddy: Housework.where(created_at: from..to).where( bathroom: true).count,
-      bathroom_partner: Housework.where(created_at: from..to).where( bathroom: false).count,
-      trash_buddy: Housework.where(created_at: from..to).where( trash: true).count,
-      trash_partner: Housework.where(created_at: from..to).where( trash: false).count,
-      toilet_buddy: Housework.where(created_at: from..to).where( toilet: true).count,
-      toilet_partner: Housework.where(created_at: from..to).where( toilet: false).count
+      laundry_buddy: Housework.where(created_at: from..to).where(pair_id:@pair_1.id || @pair_2.id).where(laundry: true).count,
+      laundry_partner: Housework.where(created_at: from..to).where(pair_id:@pair_1.id || @pair_2.id).where(laundry: false).count,
+      dishes_buddy: Housework.where(created_at: from..to).where(pair_id:@pair_1.id || @pair_2.id).where(dishes: true).count,
+      dishes_partner: Housework.where(created_at: from..to).where(pair_id:@pair_1.id || @pair_2.id).where( dishes: false).count,
+      cooking_buddy: Housework.where(created_at: from..to).where(pair_id:@pair_1.id || @pair_2.id).where( cooking: true).count,
+      cooking_partner: Housework.where(created_at: from..to).where(pair_id:@pair_1.id || @pair_2.id).where( cooking: false).count,
+      clean_room_buddy: Housework.where(created_at: from..to).where(pair_id:@pair_1.id || @pair_2.id).where( clean_room: true).count,
+      clean_room_partner: Housework.where(created_at: from..to).where(pair_id:@pair_1.id || @pair_2.id).where( clean_room: false).count,
+      bathroom_buddy: Housework.where(created_at: from..to).where(pair_id:@pair_1.id || @pair_2.id).where( bathroom: true).count,
+      bathroom_partner: Housework.where(created_at: from..to).where(pair_id:@pair_1.id || @pair_2.id).where( bathroom: false).count,
+      trash_buddy: Housework.where(created_at: from..to).where(pair_id:@pair_1.id || @pair_2.id).where( trash: true).count,
+      trash_partner: Housework.where(created_at: from..to).where(pair_id:@pair_1.id || @pair_2.id).where( trash: false).count,
+      toilet_buddy: Housework.where(created_at: from..to).where(pair_id:@pair_1.id || @pair_2.id).where( toilet: true).count,
+      toilet_partner: Housework.where(created_at: from..to).where(pair_id:@pair_1.id || @pair_2.id).where( toilet: false).count
     }
 
     gon.weekLaundryBuddy = week_counts[:laundry_buddy]

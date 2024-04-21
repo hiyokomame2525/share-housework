@@ -7,15 +7,11 @@
       <%= link_to "家事の記録をつけてみましょう！", new_housework_path, class: "record" %>
     </div>
     <div class = "housework-record-week">
-      <% @houseworks.each do |housework| %>
-        <% if housework.pair.id == (@pair_1.id || @pair_2.id) %>
-          <%= link_to "今週の家事を振り返ってみましょう！", housework_path(housework.id), class: "record-week" %>
-        <% end %>
-      <% end %>
+      <%= link_to "今週の家事を振り返ってみましょう！", housework_path(@house_work.id), class: "record-week" %>
     </div>
   <% else %>
     <div class = "create-pair">
-      <%= link_to "ペアを作る", new_pair_path %>
+      <%= link_to "ペアを作る", new_pair_path, class:"pair-create" %>
     </div>
   <% end %>
 <% end %>

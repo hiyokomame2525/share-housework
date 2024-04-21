@@ -1,7 +1,14 @@
+.whole{
+  height: 700px;
+  width: 100vw;
+  background-color: bisque;
+  padding-top: 100px;
+}
+
 .create-pair-whole{
   height: 500px;
   width: 500px;
-  margin: 150px auto ;
+  margin-left: 600px ;
 }
 
 .id-explain-space{
