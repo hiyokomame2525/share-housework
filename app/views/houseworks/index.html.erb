@@ -7,7 +7,7 @@
       <%= link_to "家事の記録をつけてみましょう！", new_housework_path, class: "record" %>
     </div>
     <div class = "housework-record-week">
-      <%= link_to "今週の家事を振り返ってみましょう！", housework_path(@housework), class: "record-week" %>
+      <%= link_to "今週の家事を振り返ってみましょう！", housework_path(@house_work.id), class: "record-week" %>
     </div>
   <% else %>
     <div class = "create-pair">
