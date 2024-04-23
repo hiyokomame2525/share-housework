@@ -5,18 +5,19 @@ class HouseworksController < ApplicationController
     @houseworks = Housework.all
     if user_signed_in?
       @pair_1 = Pair.find_by(user_id: current_user.id )
-      @pair_2 = Pair.find_by(partner_id:current_user.id)
+      @pair_2 = Pair.find_by(partner_id: current_user.id)
+  
       if @pair_1.present? 
-        if @pair_1.user_id || @pair_1.partner_id == current_user.id
-          @house_work = @houseworks.where(pair_id: @pair_1.id).order("created_at DESC").last
+        if @pair_1.user_id == current_user.id
+          @house_work = @houseworks.where(pair_id: @pair_1.id).last
         end
+     
       elsif  @pair_2.present?
-        if @pair_2.user_id || @pair_2.partner_id == current_user.id
-          @house_work = @houseworks.where(pair_id: @pair_2.id).order("created_at DESC").last
+        if @pair_2.partner_id == current_user.id
+          @house_work = @houseworks.where(pair_id: @pair_2.id).last
         end
       end
     end
-    
   end
 
   def new
