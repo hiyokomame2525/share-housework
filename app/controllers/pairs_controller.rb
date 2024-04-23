@@ -6,13 +6,14 @@ class PairsController < ApplicationController
   end
 
   def create
-    partner_id = params[:partner_id]
-    partner = User.find_by(id: partner_id)
+    @pairs = Pair.all
     @pair = Pair.new(pair_params)
-    if @pair.save
-      redirect_to root_path
+    partner = User.find_by(id: pair_params[:partner_id])
+    if @pairs.exists?(user_id: partner.id) && @pairs.exists?(partner_id: partner.id)
+      @pair.save
+      redirect_to root_path and return
     else
-      render :new, status: :unprocessable_entity
+      render 'new', status: :unprocessable_entity
     end
   end
 
@@ -31,7 +32,4 @@ class PairsController < ApplicationController
       params.require(:pair).permit(:user_id, :partner_id)
     end
 
-    #def following?(other_user)
-     # self.buddy.include?(other_user)
-    #end
 end

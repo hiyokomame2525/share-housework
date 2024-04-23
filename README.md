@@ -83,7 +83,7 @@ https://share-housework.onrender.com
 ・上記が終了したら適宜cssを使用して装飾をする。  
 
 # 制作時間
-約65時間
+約74時間
 
 # テーブル設計
 
