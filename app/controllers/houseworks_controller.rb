@@ -114,9 +114,27 @@ class HouseworksController < ApplicationController
   end
 
   def edit
+    if @pair_1 = Pair.find_by(user_id: current_user.id ) || @pair_2 = Pair.find_by(partner_id:current_user.id)
+      if @pair_1 
+        @pair = @pair_1
+        @partner = User.find_by(id: @pair.user_id)
+        @buddy = User.find_by(id: @pair.partner_id)
+      elsif @pair_2
+        @pair = @pair_2
+        @partner = User.find_by(id: @pair.user_id)
+        @buddy = User.find_by(id: @pair.partner_id)
+      else
+        redirect_to root_path
+      end
+    end
   end
 
   def update
+    if @housework.update(housework_params)
+        redirect_to root_path
+    else
+      render :edit,status: :unprocessable_entity
+    end
   end
 
   def destroy
