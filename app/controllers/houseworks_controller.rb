@@ -64,22 +64,26 @@ class HouseworksController < ApplicationController
     if @pair_1 = Pair.find_by(user_id: current_user.id ) || @pair_2 = Pair.find_by(partner_id:current_user.id)
       if @pair_1 
         @pair = @pair_1
-        @partner = User.find_by(id: @pair.user_id)
-        @buddy = User.find_by(id: @pair.partner_id)
+        @buddy = User.find_by(id: @pair.user_id)
+        @partner = User.find_by(id: @pair.partner_id)
       elsif @pair_2
         @pair = @pair_2
-        @partner = User.find_by(id: @pair.user_id)
-        @buddy = User.find_by(id: @pair.partner_id)
+        @buddy  = User.find_by(id: @pair.user_id)
+        @partner = User.find_by(id: @pair.partner_id)
       else
         redirect_to root_path
       end
     end
     
+    
+
     gon.buddyName = @buddy.nickname
     gon.partnerName = @partner.nickname
   
     from  = 7.day.ago
     to    = Time.now
+    @house_work_edit = Housework.where(pair_id: @pair.id).find_by(created_at: Date.today)
+
     week_counts ={
       laundry_buddy: Housework.where(created_at: from..to).where(pair_id:@pair_1.id || @pair_2.id).where(laundry: true).count,
       laundry_partner: Housework.where(created_at: from..to).where(pair_id:@pair_1.id || @pair_2.id).where(laundry: false).count,
@@ -114,9 +118,27 @@ class HouseworksController < ApplicationController
   end
 
   def edit
+    if @pair_1 = Pair.find_by(user_id: current_user.id ) || @pair_2 = Pair.find_by(partner_id:current_user.id)
+      if @pair_1 
+        @pair = @pair_1
+        @partner = User.find_by(id: @pair.user_id)
+        @buddy = User.find_by(id: @pair.partner_id)
+      elsif @pair_2
+        @pair = @pair_2
+        @partner = User.find_by(id: @pair.user_id)
+        @buddy = User.find_by(id: @pair.partner_id)
+      else
+        redirect_to root_path
+      end
+    end
   end
 
   def update
+    if @housework.update(housework_params)
+        redirect_to root_path
+    else
+      render :edit,status: :unprocessable_entity
+    end
   end
 
   def destroy

@@ -1,0 +1,53 @@
+<%= render "shares/header" %>
+<div class = "whole">
+<h2>家事の記録を残しましょう</h2>
+
+<%= form_with(model:@housework, local: true) do |f| %>
+  <%# エラー文出すためのrender  #%>
+
+  
+    <%# f.hidden_field :pair_id, :value => @pair.id #%>
+    
+
+  <div class="housework-field">
+  <h6>洗濯</h6>
+    <%= f.radio_button :laundry, "true", class:"work-btn" %><%= @partner.nickname %>がやった！
+    <%= f.radio_button :laundry, "false", class:"work-btn" %><%= @buddy.nickname %>がやった！
+  </div>
+  <h6>食器洗い</h6>
+  <div class="housework-field">
+    <%= f.radio_button :dishes, "true", class:"work-btn" %><%= @partner.nickname %>がやった！
+    <%= f.radio_button :dishes, "false", class:"work-btn" %><%= @buddy.nickname %>がやった！
+  </div>
+  <h6>調理</h6>
+  <div class="housework-field">
+    <%= f.radio_button :cooking, "true", class:"work-btn" %><%= @partner.nickname %>がやった！
+    <%= f.radio_button :cooking, "false", class:"work-btn" %><%= @buddy.nickname %>がやった！
+  </div>
+  <h6>部屋の片づけ</h6>
+  <div class="housework-field">
+    <%= f.radio_button :clean_room,"true" , class:"work-btn"  %><%= @partner.nickname %>がやった！
+    <%= f.radio_button :clean_room,"false" , class:"work-btn" %><%= @buddy.nickname %>がやった！
+  </div>
+  <h6>お風呂掃除</h6>
+  <div class="housework-field">
+  <%= f.radio_button :bathroom, "true", class:"work-btn" %><%= @partner.nickname %>がやった！
+  <%= f.radio_button :bathroom, "false", class:"work-btn" %><%= @buddy.nickname %>がやった！
+  </div>
+  <h6>ゴミを集めて捨てる</h6>
+  <div class="housework-field">
+  <%= f.radio_button :trash, "true", class:"work-btn" %><%= @partner.nickname %>がやった！
+  <%= f.radio_button :trash, "false", class:"work-btn" %><%= @buddy.nickname %>がやった！
+  </div>
+  <h6>トイレ掃除</h6>
+  <div class="housework-field">
+    <%= f.radio_button :toilet, "true", class:"work-btn" %><%= @partner.nickname %>がやった！
+    <%= f.radio_button :toilet, "false", class:"work-btn" %><%= @buddy.nickname %>がやった！
+  </div>
+  
+  
+  <div class="housework-submit-space">
+    <%= f.submit "頑張りを編集し終える", class:"housewourk-submit-btn" %>
+  </div>
+<% end %>
+</div>
