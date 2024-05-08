@@ -10,11 +10,13 @@ class HouseworksController < ApplicationController
       if @pair_1.present? 
         if @pair_1.user_id == current_user.id
           @house_work = @houseworks.where(pair_id: @pair_1.id).last
+          @pair_delete = @pair_1
         end
      
       elsif  @pair_2.present?
         if @pair_2.partner_id == current_user.id
           @house_work = @houseworks.where(pair_id: @pair_2.id).last
+          @pair_delete = @pair_2
         end
       end
     end

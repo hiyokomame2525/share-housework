@@ -8,7 +8,7 @@
     </div>
 
     <div class = "pair-delete">
-      <%= link_to "ペアを解消する", pair_path(@pair_delete.id), data: { turbo_method: :delete }, class: "pair-delete-btn" %>
+      <%= link_to "ペアを解消する", pair_path(id: @pair_delete.id), data: { turbo_method: :delete }, class: "pair-delete-btn" %>
     </div>
     
     <% if @house_work.present? %>
