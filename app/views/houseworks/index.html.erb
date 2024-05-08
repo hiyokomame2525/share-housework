@@ -7,11 +7,16 @@
       <%= link_to "家事の記録をつけてみましょう！", new_housework_path, class: "record" %>
     </div>
 
+    <div class = "pair-delete">
+      <%= link_to "ペアを解消する", pair_path(@pair_delete.id), data: { turbo_method: :delete }, class: "pair-delete-btn" %>
+    </div>
+    
     <% if @house_work.present? %>
       <div class = "housework-record-week">
         <%= link_to "今週の家事を振り返ってみましょう！", housework_path(@house_work.id), class: "record-week" %>
       </div>
     <% end %>
+   
 
   <% else %>
     <div class = "create-pair">
