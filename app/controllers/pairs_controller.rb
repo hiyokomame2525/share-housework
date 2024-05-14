@@ -9,7 +9,7 @@ class PairsController < ApplicationController
     @pairs = Pair.all
     @pair = Pair.new(pair_params)
     partner = User.find_by(id: pair_params[:partner_id])
-    if @pairs.exists?(user_id: partner.id) && @pairs.exists?(partner_id: partner.id)
+    unless @pairs.exists?(user_id: partner.id) && @pairs.exists?(partner_id: partner.id)
       @pair.save
       redirect_to root_path and return
     else
