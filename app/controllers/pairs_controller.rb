@@ -18,12 +18,22 @@ class PairsController < ApplicationController
   end
 
   def destroy
-    if current_user == @pair.user_id || @pair.partner_id
-       @pair.destroy
-      redirect_to root_path
-    else
-      flash.now[:alart] = "ペアの解除に失敗しました"
-      redirect_to root_path
+    if user_signed_in?
+      @pair_1 = Pair.find_by(user_id: current_user.id )
+      @pair_2 = Pair.find_by(partner_id: current_user.id)
+
+      if current_user.id == @pair_1.user_id
+        @pair_delete = @pair_1
+        @pair_delete.destroy
+        redirect_to root_path
+      elsif current_user.id == @pair_2.partner_id
+        @pair = @pair_2
+        @pair_delete.destroy
+        redirect_to root_path
+      else
+        flash.now[:alart] = "ペアの解除に失敗しました"
+        redirect_to root_path
+      end
     end
   end
 

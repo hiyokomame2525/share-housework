@@ -20,9 +20,9 @@
 .housework-record-week{
   width: 300px;
   height: 100px;
-  margin-left: 600px;
   background-color: aquamarine;
   border-radius: 10px;
+  margin-left: 600px;
   display: flex;
   justify-content: center;
   text-align: center;
@@ -55,5 +55,23 @@
   text-decoration: none;
   color:indigo;
   font-size: 30px;
+  line-height: 100px;
+}
+
+.pair-delete{
+  width: 300px;
+  height: 100px;
+  background-color: darkorange;
+  border-radius: 10px;
+  margin-top:100px;
+  margin-left: 600px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.pair-delete-btn{
+  text-decoration: none;
+  color:indigo;
   line-height: 100px;
 }
